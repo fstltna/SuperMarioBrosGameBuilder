@@ -1,0 +1,29 @@
+name: supermariobros-game-builder # you probably want to 'snapcraft register <name>'
+base: core18 # the base snap is the execution environment for this snap
+version: '1.0' # just for humans, typically '1.2+git' or '1.3.2'
+summary: This is a faithful simulation of the original Super Mario Bros. game on the Nintendo Entertainment System.
+description: |
+  This is a faithful simulation of the original Super Mario Bros. game on the Nintendo Entertainment System. Users can build their own games with all the classic capabilities, and without the limits imposed by the NES hardware. There is little to no learning curve to master building custom levels! The game comes packaged with an editable copy of the original game, rebuilt for this program
+
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+icon:  smb_icon.png
+title: Super Mario Bros Game Builder
+
+apps:
+  smb:
+    command: startsmb
+parts:
+  smb:
+    # See 'snapcraft plugins'
+    plugin: dump
+    source: .
+#    build-packages: [default-jre]
+#    stage-packages: [default-jre]
+    organize:
+      smb: build/
+      smb.1: man/man1/
+
+architectures:
+  - build-on: amd64
+
